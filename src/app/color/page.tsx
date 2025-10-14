@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { Icon, Plus } from "lucide-react";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -59,15 +62,14 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-medium mb-4">Buttons</h3>
               <div className="flex gap-4 flex-wrap">
-                <button className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
-                  Primary Button
-                </button>
-                <button className="bg-secondary text-foreground px-6 py-3 rounded-lg hover:bg-muted transition-colors">
-                  Secondary Button
-                </button>
-                <button className="border-2 border-primary text-primary px-6 py-3 rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors">
-                  Outline Button
-                </button>
+                <Button>Test Button</Button>
+                <Button variant="secondary">Test Button</Button>
+                <Button variant="outline">Test Button</Button>
+                <Button size="sm">Test Button</Button>
+                <Button size="lg">Test Button</Button>
+                <Button size="icon">
+                  <Plus />
+                </Button>
               </div>
             </div>
 
