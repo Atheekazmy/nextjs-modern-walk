@@ -10,8 +10,16 @@ const typographyVariants = cva("", {
       h4: "text-xl leading-normal font-bold text-balance",
       h5: "text-lg leading-normal font-bold text-balance",
       h6: "text-base leading-normal font-bold text-balance",
-      caption: "text-base text-muted-foreground",
+      caption: "text-base foreground",
       label: "text-sm font-medium",
+      subtitle: "text-md font-semibold",
+    },
+    color: {
+      primary: "text-primary",
+      secondary: "text-secondary",
+      muted: "text-muted-foreground",
+      foreground: "text-foreground",
+      background: "text-background",
     },
     fullWidth: {
       true: "w-full",
@@ -36,6 +44,7 @@ export interface TypographyProps
   children: React.ReactNode;
   as?: "h1" | "h2" | "p" | "span" | "div";
   align?: "left" | "center" | "right";
+  color?: "primary" | "secondary" | "muted" | "foreground" | "background";
 }
 
 export function Typography({
@@ -45,6 +54,7 @@ export function Typography({
   as,
   children,
   align,
+  color,
   ...props
 }: TypographyProps) {
   const Component =
@@ -53,7 +63,7 @@ export function Typography({
   return (
     <Component
       className={cn(
-        typographyVariants({ variant, fullWidth, align }),
+        typographyVariants({ variant, fullWidth, align, color }),
         className
       )}
       {...props}

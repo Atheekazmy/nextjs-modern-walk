@@ -16,7 +16,7 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div
-      className={`w-full  flex flex-row items-center justify-between items-stretch ${
+      className={`w-full flex flex-row items-center justify-between items-stretch mb-8 ${
         className ?? ""
       }`}
       {...rest}
