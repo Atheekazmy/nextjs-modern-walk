@@ -7,6 +7,7 @@ import Link from "next/link";
 
 type ActionLabelProps = {
   label: string;
+  redirectTo: string;
   IconComponent?: ComponentType<{ className?: string }>;
 } & HTMLAttributes<HTMLDivElement>;
 
@@ -14,6 +15,7 @@ export function ActionLabel({
   label,
   IconComponent = ChevronRight,
   className,
+  redirectTo,
   ...rest
 }: ActionLabelProps) {
   return (
@@ -23,10 +25,10 @@ export function ActionLabel({
       }`}
       {...rest}
     >
-      <Link href="/shop">
+      <Link href={redirectTo}>
         <Typography variant="label">{label}</Typography>
       </Link>
-      <Link href="/shop">
+      <Link href={redirectTo}>
         <IconComponent />
       </Link>
     </div>

@@ -6,7 +6,7 @@ import { InputGroup, InputGroupInput, InputGroupAddon } from "./ui/input-group";
 
 export const Navbar = () => {
   return (
-    <div className="flex flex-row items-center justify-between w-full h-[100px] bg-background px-[120px] py-6 border-b border-border">
+    <div className="sticky top-0 z-50 flex flex-row items-center justify-between w-full h-[100px] bg-background px-[120px] py-6 border-b border-border">
       <div>
         {" "}
         <Link href="/">

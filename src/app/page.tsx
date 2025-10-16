@@ -60,7 +60,9 @@ export default function Home() {
           <ProductListSection
             products={latestProducts}
             title="Latest Products"
-            right={<ActionLabel label="Browse All Products" />}
+            right={
+              <ActionLabel label="Browse All Products" redirectTo="/shop" />
+            }
           />
         </div>
       </div>

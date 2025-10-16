@@ -1,4 +1,5 @@
 import { Product } from "@/lib/api/product";
+import { kebabCase, toTitleCase } from "@/lib/utils";
 import moment from "moment";
 
 export const getFlashSaleProducts = (products: Product[], count = 5) => {
@@ -43,4 +44,15 @@ export const mapProducts = (products: Product[]) => {
     ...product,
     createdAt: getRandomDate(),
   }));
+};
+
+export const getProductCategories = (products: Product[]) => {
+  const categories = new Set(products.map((product) => product.category));
+  return Array.from([
+    { label: "New Arrival", value: "new-arrival" },
+    ...Array.from(categories).map((category) => ({
+      label: toTitleCase(category),
+      value: category,
+    })),
+  ]);
 };
