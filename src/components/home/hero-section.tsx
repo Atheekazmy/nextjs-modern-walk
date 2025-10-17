@@ -2,6 +2,7 @@ import { Typography } from "../ui/typography";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import CountSummary from "@common/count-summary";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -14,7 +15,9 @@ export function HeroSection() {
           <Typography variant="caption" color="muted">
             Step into timeless fashion made for today’s lifestyle.
           </Typography>
-          <Button>Shop Now</Button>
+          <Button asChild>
+            <Link href="/shop">Shop Now</Link>
+          </Button>
         </div>
         <div className="flex flex-row items-start justify-center gap-12">
           <CountSummary count="200+" title="International Brands" />

@@ -55,7 +55,10 @@ export default function Page({ params }: { params: { productId: string } }) {
   if (!product)
     return (
       <div className="col-span-2 flex justify-center mt-12">
-        <NoRecords />
+        <NoRecords
+          title="Product not found"
+          description="The product you are looking for does not exist"
+        />
       </div>
     );
 

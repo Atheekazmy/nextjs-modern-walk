@@ -1,7 +1,7 @@
 "use client";
 
 import { Typography } from "@/components/ui/typography";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ComponentType, HTMLAttributes } from "react";
 import Link from "next/link";
 
@@ -13,7 +13,7 @@ type ActionLabelProps = {
 
 export function ActionLabel({
   label,
-  IconComponent = ChevronRight,
+  IconComponent = ArrowRight,
   className,
   redirectTo,
   ...rest
@@ -29,7 +29,7 @@ export function ActionLabel({
         <Typography variant="label">{label}</Typography>
       </Link>
       <Link href={redirectTo}>
-        <IconComponent />
+        <ArrowRight size={20} />
       </Link>
     </div>
   );

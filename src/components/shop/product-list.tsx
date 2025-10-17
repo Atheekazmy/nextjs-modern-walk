@@ -25,7 +25,10 @@ export default function ProductList({
         ))
       ) : (
         <div className="col-span-2 flex justify-center mt-12">
-          <NoRecords />
+          <NoRecords
+            title="No products found"
+            description="Change your filters to find products"
+          />
         </div>
       )}
       <div className="col-span-full flex justify-center mt-12">

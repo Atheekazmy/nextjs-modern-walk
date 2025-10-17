@@ -7,17 +7,21 @@ import {
 } from "@/components/ui/empty";
 import { Shirt } from "lucide-react";
 
-export default function NoRecords() {
+export default function NoRecords({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) {
   return (
     <Empty>
       <EmptyHeader>
         <EmptyMedia variant="icon">
           <Shirt />
         </EmptyMedia>
-        <EmptyTitle>No products found</EmptyTitle>
-        <EmptyDescription>
-          Change your filters to find products
-        </EmptyDescription>
+        <EmptyTitle>{title}</EmptyTitle>
+        <EmptyDescription>{description}</EmptyDescription>
       </EmptyHeader>
     </Empty>
   );
