@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Walk – Frontend Prototype
 
-## Getting Started
+This project is a prototype implementation of the **Modern Walk** fashion retail web application, developed as part of the **WireApps Front-End Technical Assessment**.  
+The objective was to build a working prototype based on the given Figma design using the specified technologies and to deliver the core features within the limited timeline.
 
-First, run the development server:
+---
+
+## Setup Instructions
+
+**Clone the repository:**
+
+```bash
+git clone https://github.com/Atheekazmy/nextjs-modern-walk.git
+cd modern-walk
+```
+
+**Install dependencies:**
+
+```bash
+npm install
+```
+
+**Run the development server:**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Visit the app at:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js 15 (App Router)
+- TypeScript – for type safety and improved developer experience
+- Tailwind CSS – for efficient and scalable styling
+- ShadCN UI – for reusable and consistent UI components
+- React Query – for data fetching and caching
+- Zustand – for lightweight global state management (e.g., cart handling)
+- Fake Store API – used as the data source
+- Moment – for date handling
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Timeframe & Scope
 
-## Deploy on Vercel
+This project was completed within the **4-day time limit** provided for the assessment.  
+The main focus was on building a functional, design-aligned, and maintainable prototype that reflects the Figma design as closely as possible.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Due to the short timeframe, I prioritized implementing the **core user flows** and **reusable components** essential for demonstrating the overall architecture and functionality.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## What Could Be Improved with More Time
+
+If I had a few more days (including a weekend), I would have:
+
+- Implemented additional UI sections such as the Footer, Sales Banner, and Newsletter
+- Added loading and error states with improved animations or skeleton placeholders
+- Enhanced unit testing coverage
+- Made the UI more responsive for smaller devices
+- Added error boundaries and better error handling across pages
+- Refactored some parts of the codebase for cleaner structure and moved repeated logic into custom hooks
+
+---
+
+## Notes
+
+- This is a **prototype version**, not a production-ready build.
+- Only the essential features were implemented to demonstrate design accuracy, proper state management, and overall architecture.
+- Some non-critical UI sections (e.g., newsletter, footer) were intentionally skipped to maximize delivery within the given time frame.

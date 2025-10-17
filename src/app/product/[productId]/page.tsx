@@ -14,12 +14,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Plus, Star } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useParams } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
-export default function Page({ params }: { params: { productId: string } }) {
-  const { productId } = params;
+export default function Page() {
+  const { productId } = useParams<{ productId: string }>();
   const [selectedSize, setSelectedSize] = useState<
     "Small" | "Medium" | "Large"
-  >("Small");
+  >();
   const [quantity, setQuantity] = useState<number>(1);
   const { addItem } = useCartStore();
   const {
@@ -69,9 +72,10 @@ export default function Page({ params }: { params: { productId: string } }) {
       price: product?.price,
       quantity: quantity,
       image: product?.image,
-      size: selectedSize,
+      size: selectedSize ?? "Small",
       category: product?.category,
     });
+    toast.success("Product added to cart");
   };
 
   return (
@@ -197,6 +201,7 @@ export default function Page({ params }: { params: { productId: string } }) {
         </Typography>
       </div>
       <ProductListSection products={relatedProducts} title="Related Products" />
+      <Toaster />
     </div>
   );
 }

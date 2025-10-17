@@ -5,6 +5,7 @@ import { PageBreadcrumb } from "@/components/common/page-breadcrumb";
 import ProductListSection from "@/components/common/product-list-section";
 import SectionHeader from "@/components/common/section-header";
 import { Button } from "@/components/ui/button";
+import { Toaster } from "@/components/ui/sonner";
 import { Typography } from "@/components/ui/typography";
 import { productsApi } from "@/lib/api/product";
 import { useCartStore } from "@/stores/use-cart-store";
@@ -24,8 +25,6 @@ export default function Page() {
     queryFn: productsApi.getAll,
   });
 
-  console.log("cartItems", cartItems);
-
   const shippingFee = 5;
 
   const relatedProducts = useMemo(
@@ -44,8 +43,6 @@ export default function Page() {
   const taxAmount = totalPrice * taxPercentage;
 
   if (error) return <div>Error: {error.message}</div>;
-
-  console.log("cartItems", cartItems);
 
   if (!cartItems?.length)
     return (
@@ -125,7 +122,7 @@ export default function Page() {
             <div className="flex flex-row items-center gap-2 mt-2">
               <Button
                 variant="default"
-                className="w-full gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                className="w-full gap-2  transition-all duration-200"
               >
                 Go to Checkout
               </Button>
@@ -137,6 +134,7 @@ export default function Page() {
         products={relatedProducts}
         title="You May Also Like"
       />
+      <Toaster />
     </div>
   );
 }
