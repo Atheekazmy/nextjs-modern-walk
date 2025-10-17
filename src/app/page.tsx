@@ -14,6 +14,7 @@ import {
 } from "@/utils/product-utils";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
+import ErrorState from "@/components/common/error-state";
 
 export default function Home() {
   const {
@@ -41,7 +42,15 @@ export default function Home() {
     [mappedProducts]
   );
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error)
+    return (
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-6">
+        <ErrorState
+          title="Failed to load products"
+          description={error instanceof Error ? error.message : undefined}
+        />
+      </div>
+    );
 
   return (
     <div className="min-h-screen bg-background text-foreground">
