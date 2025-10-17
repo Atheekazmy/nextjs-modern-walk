@@ -25,7 +25,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </div>
       <Typography variant="subtitle">{product.title}</Typography>
       <div className="flex flex-row items-center justify-between gap-2 mt-1">
-        <Typography variant="caption">${product.price}</Typography>
+        <Typography variant="caption">${product.price?.toFixed(2)}</Typography>
         <div className="flex flex-row items-center gap-2">
           <Star fill="currentColor" className="w-6 h-6 text-yellow-500" />
           <Typography variant="caption">{product.rating.rate}/5</Typography>

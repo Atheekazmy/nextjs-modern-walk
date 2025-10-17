@@ -56,3 +56,18 @@ export const getProductCategories = (products: Product[]) => {
     })),
   ]);
 };
+
+export const getRelatedProducts = (
+  products: Product[],
+  productIds: number[],
+  productCategories: string[],
+  count = 4
+) => {
+  return products
+    .filter(
+      (product) =>
+        !productIds.includes(product.id) &&
+        productCategories.includes(product.category)
+    )
+    .slice(0, count);
+};

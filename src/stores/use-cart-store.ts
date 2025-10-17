@@ -7,13 +7,14 @@ interface CartItem {
   price: number;
   quantity: number;
   image: string;
+  category: string;
   size: "Small" | "Medium" | "Large";
 }
 
 export type CartStore = {
   items: CartItem[];
   taxPercentage: number;
-  addItem: (item: Omit<CartItem, "quantity">) => void;
+  addItem: (item: CartItem) => void;
   removeItem: (id: number) => void;
   clearCart: () => void;
   getTotalPrice: () => number;

@@ -9,7 +9,7 @@ export default function NotFound() {
         <Typography variant="h1" align="center">
           We couldn’t find that page
         </Typography>
-        <Typography className="text-muted-foreground">
+        <Typography className="text-muted-foreground" align="center">
           The page you’re looking for doesn’t exist or was moved. Try going back
           to the homepage or explore our latest products.
         </Typography>

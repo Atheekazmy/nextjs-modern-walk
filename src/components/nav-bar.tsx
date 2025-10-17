@@ -1,14 +1,15 @@
+"use client";
+import { useCartStore } from "@/stores/use-cart-store";
+import { Handbag, Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group";
 import { Typography } from "./ui/typography";
-import { Icon, Plus, Search, ShoppingCart, User } from "lucide-react";
-import { Button } from "./ui/button";
-import { InputGroup, InputGroupInput, InputGroupAddon } from "./ui/input-group";
 
 export const Navbar = () => {
+  const { items: cartItems } = useCartStore();
   return (
     <div className="sticky top-0 z-50 flex flex-row items-center justify-between w-full h-[100px] bg-background px-[120px] py-6 border-b border-border">
       <div>
-        {" "}
         <Link href="/">
           <Typography variant="h2" className="cursor-pointer">
             MW.
@@ -30,9 +31,12 @@ export const Navbar = () => {
         </InputGroup>
       </div>
       <div className="flex flex-row items-center justify-center gap-4 text-foreground gap-8 ">
-        <Link href="/cart">
-          <ShoppingCart className="w-6 h-6 cursor-pointer" />
-        </Link>
+        <div className="flex flex-row items-center justify-center gap-2">
+          <Link href="/cart">
+            <Handbag className="w-6 h-6 cursor-pointer" />
+          </Link>
+          <Typography variant="label">{cartItems.length}</Typography>
+        </div>
         <User className="w-6 h-6 cursor-pointer" />
       </div>
     </div>
