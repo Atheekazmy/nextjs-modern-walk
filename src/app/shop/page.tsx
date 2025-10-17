@@ -12,11 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 
 export default function Page() {
-  const {
-    isPending,
-    error,
-    data: products,
-  } = useQuery({
+  const { isPending, data: products } = useQuery({
     queryKey: ["products"],
     queryFn: productsApi.getAll,
   });
@@ -89,7 +85,6 @@ export default function Page() {
     }
   };
 
-  if (error) return <div>Error: {error.message}</div>;
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-full mx-auto p-[120px]">

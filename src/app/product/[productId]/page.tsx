@@ -17,6 +17,7 @@ import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
+import ErrorState from "@/components/common/error-state";
 
 export default function Page() {
   const { productId } = useParams<{ productId: string }>();
@@ -47,7 +48,16 @@ export default function Page() {
     [products, productId, product?.category]
   );
 
-  if (error) return <div>Error: {error?.message}</div>;
+  if (error)
+    return (
+      <div className="min-h-64 bg-background text-foreground flex items-center justify-center p-6">
+        <ErrorState
+          title="Failed to load product"
+          description={error instanceof Error ? error.message : undefined}
+        />
+      </div>
+    );
+
   if (isLoading)
     return (
       <div className="w-full h-full flex items-center justify-center gap-4 py-[128px]">
@@ -89,40 +99,26 @@ export default function Page() {
           ]}
         />
       </div>
-      {isLoading ? (
-        <div className="w-full h-full flex items-center justify-center gap-4">
-          <Spinner />
-        </div>
-      ) : (
-        <div className="w-full h-full flex  justify-start gap-4 mx-auto px-[120px] mb-[120px]">
-          <div className="flex flex-1 gap-6 ">
-            <div className="flex flex-col gap-4  ">
-              <div className="relative w-40 h-40  overflow-hidden border border-border rounded-lg">
-                <Image
-                  src={product?.image}
-                  alt="Sleeveless Blouse"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <div className="relative  w-40  h-40  overflow-hidden border border-border rounded-lg">
-                <Image
-                  src={product?.image}
-                  alt="Sleeveless Blouse"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <div className="relative  w-40  h-40  overflow-hidden border border-border rounded-lg">
-                <Image
-                  src={product?.image}
-                  alt="Sleeveless Blouse"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
+      <div className="w-full h-full flex  justify-start gap-4 mx-auto px-[120px] mb-[120px]">
+        <div className="flex flex-1 gap-6 ">
+          <div className="flex flex-col gap-4  ">
+            <div className="relative w-40 h-40  overflow-hidden border border-border rounded-lg">
+              <Image
+                src={product?.image}
+                alt="Sleeveless Blouse"
+                layout="fill"
+                objectFit="contain"
+              />
             </div>
-            <div className="relative   flex-1 overflow-hidden border border-border rounded-lg">
+            <div className="relative  w-40  h-40  overflow-hidden border border-border rounded-lg">
+              <Image
+                src={product?.image}
+                alt="Sleeveless Blouse"
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+            <div className="relative  w-40  h-40  overflow-hidden border border-border rounded-lg">
               <Image
                 src={product?.image}
                 alt="Sleeveless Blouse"
@@ -131,68 +127,74 @@ export default function Page() {
               />
             </div>
           </div>
-          <div className="p-6 flex-1 flex flex-col gap-4 mt-6">
-            <div className="flex flex-col gap-4 border-b border-border pb-4">
-              <Typography variant="h2" fullWidth={false}>
-                {product?.title}
-              </Typography>
-              <div className="flex flex-row items-center gap-2">
-                <Star fill="currentColor" className="w-6 h-6 text-yellow-500" />
-                <Typography variant="caption">
-                  {product.rating.rate}/5
-                </Typography>
-              </div>
-              <Typography variant="h3" className="font-semibold">
-                ${product?.price.toFixed(2)}
-              </Typography>
-              <Typography variant="label" color="muted" className="mb-10">
-                {product.description}
-              </Typography>
+          <div className="relative   flex-1 overflow-hidden border border-border rounded-lg">
+            <Image
+              src={product?.image}
+              alt="Sleeveless Blouse"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+        </div>
+        <div className="p-6 flex-1 flex flex-col gap-4 mt-6">
+          <div className="flex flex-col gap-4 border-b border-border pb-4">
+            <Typography variant="h2" fullWidth={false}>
+              {product?.title}
+            </Typography>
+            <div className="flex flex-row items-center gap-2">
+              <Star fill="currentColor" className="w-6 h-6 text-yellow-500" />
+              <Typography variant="caption">{product.rating.rate}/5</Typography>
             </div>
-            <div className="flex flex-col gap-2 border-b border-border pb-8">
-              <Typography variant="label" color="muted">
-                Select Size
-              </Typography>
-              <div className="flex flex-row items-center gap-4 mt-2">
-                <Button
-                  variant={selectedSize === "Small" ? "default" : "secondary"}
-                  size="sm"
-                  onClick={() => setSelectedSize("Small")}
-                >
-                  Small
-                </Button>
-
-                <Button
-                  variant={selectedSize === "Medium" ? "default" : "secondary"}
-                  size="sm"
-                  onClick={() => setSelectedSize("Medium")}
-                >
-                  Medium
-                </Button>
-
-                <Button
-                  variant={selectedSize === "Large" ? "default" : "secondary"}
-                  size="sm"
-                  onClick={() => setSelectedSize("Large")}
-                >
-                  Large
-                </Button>
-              </div>
-            </div>
-            <div className="flex flex-row items-center gap-2 mt-2">
-              <Counter quantity={quantity} setQuantity={setQuantity} />
+            <Typography variant="h3" className="font-semibold">
+              ${product?.price.toFixed(2)}
+            </Typography>
+            <Typography variant="label" color="muted" className="mb-10">
+              {product.description}
+            </Typography>
+          </div>
+          <div className="flex flex-col gap-2 border-b border-border pb-8">
+            <Typography variant="label" color="muted">
+              Select Size
+            </Typography>
+            <div className="flex flex-row items-center gap-4 mt-2">
               <Button
-                variant="default"
-                disabled={!selectedSize || quantity === 0}
-                onClick={onAddToCart}
-                className="w-full gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                variant={selectedSize === "Small" ? "default" : "secondary"}
+                size="sm"
+                onClick={() => setSelectedSize("Small")}
               >
-                <Plus className="w-6 h-6 " /> Add to Cart
+                Small
+              </Button>
+
+              <Button
+                variant={selectedSize === "Medium" ? "default" : "secondary"}
+                size="sm"
+                onClick={() => setSelectedSize("Medium")}
+              >
+                Medium
+              </Button>
+
+              <Button
+                variant={selectedSize === "Large" ? "default" : "secondary"}
+                size="sm"
+                onClick={() => setSelectedSize("Large")}
+              >
+                Large
               </Button>
             </div>
           </div>
+          <div className="flex flex-row items-center gap-2 mt-2">
+            <Counter quantity={quantity} setQuantity={setQuantity} />
+            <Button
+              variant="default"
+              disabled={!selectedSize || quantity === 0}
+              onClick={onAddToCart}
+              className="w-full gap-2 hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+            >
+              <Plus className="w-6 h-6 " /> Add to Cart
+            </Button>
+          </div>
         </div>
-      )}
+      </div>
 
       <div className="w-full pb-[128px] px-[120px]">
         <SectionHeader title="Description" />

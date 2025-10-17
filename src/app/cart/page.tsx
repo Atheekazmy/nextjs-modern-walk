@@ -1,5 +1,6 @@
 "use client";
 import CartItemCard from "@/components/common/cart-item-card";
+import ErrorState from "@/components/common/error-state";
 import NoRecords from "@/components/common/no-records";
 import { PageBreadcrumb } from "@/components/common/page-breadcrumb";
 import ProductListSection from "@/components/common/product-list-section";
@@ -16,11 +17,7 @@ import { useMemo } from "react";
 
 export default function Page() {
   const { items: cartItems, taxPercentage, getTotalPrice } = useCartStore();
-  const {
-    isPending,
-    error,
-    data: products,
-  } = useQuery({
+  const { error, data: products } = useQuery({
     queryKey: ["products"],
     queryFn: productsApi.getAll,
   });
@@ -42,7 +39,15 @@ export default function Page() {
   const totalPrice = getTotalPrice();
   const taxAmount = totalPrice * taxPercentage;
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error)
+    return (
+      <div className="min-h-64 bg-background text-foreground flex items-center justify-center p-6">
+        <ErrorState
+          title="Failed to load cart items"
+          description={error instanceof Error ? error.message : undefined}
+        />
+      </div>
+    );
 
   if (!cartItems?.length)
     return (
